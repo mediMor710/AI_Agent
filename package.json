@@ -1,0 +1,62 @@
+{
+  "name": "nexusai-desktop",
+  "version": "1.0.0",
+  "description": "NexusAI Sales Intelligence Agent — Desktop App",
+  "author": "NexusAI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --publish never"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.0.0"
+  },
+  "build": {
+    "appId": "com.nexusai.desktop",
+    "productName": "NexusAI",
+
+    "files": [
+      "main.js",
+      "package.json"
+    ],
+
+    "extraResources": [
+      {
+        "from": ".",
+        "to": "python",
+        "filter": [
+          "app.py",
+          "orchestrator.py",
+          "bedrock_client.py",
+          "data_loader.py",
+          "code_executor.py",
+          "analytics.py",
+          "report_generator.py",
+          "daily_question.py",
+          "config.py",
+          ".env",
+          "templates/**",
+          "static/**",
+          "KnowledgeBase/**"
+        ]
+      }
+    ],
+
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
